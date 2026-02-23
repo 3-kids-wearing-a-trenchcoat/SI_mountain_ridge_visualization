@@ -7,7 +7,7 @@ from numpy.typing import NDArray
 from MountainRidge import MountainRidge
 
 DTYPE = np.uint16
-DIRS = {(1,0), (1,1), (0,1), (-1,1), (-1,0), (-1, -1), (0, -1), (1, -1)}    # possible move directions
+DIRS = [(1,0), (1,1), (0,1), (-1,1), (-1,0), (-1, -1), (0, -1), (1, -1)]   # possible move directions
 ETA = 1e-6  # small constant
 
 class Agent:
@@ -84,4 +84,8 @@ class Agent:
         :return: New coordinates after move
         """
         neighborhood = Agent.space.get_neighborhood(self.pos[0], self.pos[1])
+        move_values = [self.calc_move_value(neighborhood, direction, greed, social, chaos) for direction in DIRS]
+        value_sum = sum(move_values)
+        normalized_values = [val / value_sum for val in move_values]
+        return self.rng.choice(DIRS, p=normalized_values)
 
