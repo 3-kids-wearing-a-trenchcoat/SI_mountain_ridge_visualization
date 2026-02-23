@@ -2,7 +2,6 @@ from __future__ import annotations
 from typing import Tuple
 import numpy as np
 from numpy import random
-from math import dist
 from numpy.typing import NDArray
 from MountainRidge import MountainRidge
 
@@ -23,7 +22,7 @@ class Agent:
     best_score: float|None = None
 
     # Individual Agents
-    def __init__(self, space: np.typing.NDArray[DTYPE], seed: int):
+    def __init__(self, seed: int):
         space_height, space_width = Agent.space.shape()
         self.rng = random.default_rng(seed)
         self.pos: Tuple[DTYPE, DTYPE] = (self.rng.integers(0, space_height, dtype= DTYPE),

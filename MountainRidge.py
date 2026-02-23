@@ -1,5 +1,6 @@
 from __future__ import annotations
 import numpy as np
+from numpy.typing import NDArray
 from generate_height_map import combine_landscape
 
 class MountainRidge:
@@ -8,7 +9,7 @@ class MountainRidge:
         self.radius = neighborhood_radius
         self.w, self.h = w, h
 
-    def get_height_map(self):
+    def get_height_map(self) -> NDArray:
         return self.mat
 
     def get_neighborhood(self, i, j):
