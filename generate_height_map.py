@@ -79,7 +79,7 @@ def combine_landscape(shape, seed=None):
     fract = fractal_octaves(shape, octaves=6, persistence=0.5, seed=(seed or 0) + 2)
     # many small gaussians (creates many local minima/pits)
     bumps = many_gaussian_bumps(shape, n_bumps=400, min_sigma=1.0, max_sigma=18.0, seed=(seed or 0) + 3,
-                                amplitude_range=(-1.0, 0.6))
+                                amplitude_range=(-1.0, 1.0))
     # sinusoidal ridges to add long-range structure
     nx, ny = shape
     xs = np.linspace(0, 2*np.pi*3, nx)  # 3 wavelengths across x
