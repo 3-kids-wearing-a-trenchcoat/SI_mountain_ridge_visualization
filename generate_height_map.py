@@ -50,7 +50,7 @@ def fractal_octaves(shape, octaves=6, persistence=0.5, seed=None):
     field = (field - field.mean()) / (field.std() + 1e-12)
     return field
 
-def many_gaussian_bumps(shape, n_bumps=300, min_sigma=1.0, max_sigma=30.0, seed=None, amplitude_range=(-1.0, 1.0)):
+def many_gaussian_bumps(shape, n_bumps=800, min_sigma=1.0, max_sigma=30.0, seed=None, amplitude_range=(-1.5, 1.5)):
     """
     Add many random Gaussian bumps/pits. Useful to create lots of local minima/maxima.
     amplitude_range: negative -> pits, positive -> bumps. You can mix.
@@ -98,4 +98,10 @@ def combine_landscape(shape, seed=None):
     field += global_pit
     # final normalization to control absolute scale
     field = (field - field.mean()) / (field.std() + 1e-12)
+
+    # shift values so that lowest is 0
+    # min_height = np.min(field)
+    # if min_height < 0:
+    #     field -= min_height
+
     return field
